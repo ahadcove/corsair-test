@@ -1,6 +1,5 @@
 const { CorsairApi } = require("@lumiastream/corsair-cove");
 const fs = require("fs");
-const util = require("util");
 const log_file = fs.createWriteStream(__dirname + "/debug.log", { flags: "w" });
 const log_stdout = process.stdout;
 // import { createRandomRgb } from '../src/utils';
@@ -19,9 +18,11 @@ const corsair = new CorsairApi();
 
 const start = async () => {
   try {
+	  console.log("Starting");
     const res = await corsair.setup();
     console.log("setup res", res);
     const devices = await corsair.getDeviceInfo();
+    console.log("Devices received");
 
     // setInterval(() => {
     const randRGB = createRandomRgb(0, 255);
@@ -39,8 +40,8 @@ const start = async () => {
     // 	brightness -= 20;
     // }, 5000);
   } catch (err) {
-    console.log("Error", err);
-    console.log("\n\n\n");
+    console.info("Error", err);
+    console.error("Error", err);
   }
 };
 
