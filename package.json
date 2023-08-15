@@ -10,6 +10,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@lumiastream/corsair-cove": "3.10.3-alpha.6"
+    "@lumiastream/corsair-cove": "3.10.3-alpha.7"
   }
 }
