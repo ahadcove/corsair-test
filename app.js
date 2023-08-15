@@ -32,10 +32,13 @@ const start = async () => {
 		// console.log("brightness: ", brightness);
 
 		const state = new LightState().rgb(randRGB).brightness(brightness);
-		corsair.setDeviceState({
+		const errors = await corsair.setDeviceState({
 			devices,
 			state,
 		});
+		if (errors?.length) {
+			console.error('Ran into errors', errors);
+		}
 		// 	brightness -= 20;
 		// }, 5000);
 	} catch (err) {
