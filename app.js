@@ -19,9 +19,9 @@ const start = async () => {
   try {
 	  console.log("Starting");
     const res = await corsair.setup();
-    console.log("setup res", res);
+    console.log("setup res " + res);
     const devices = await corsair.getDeviceInfo();
-    console.log("Devices received");
+    console.log("Devices received: " + devices);
 
     // setInterval(() => {
 	const randRGB = { r: 255, g: 0, b: 0};
@@ -32,12 +32,16 @@ const start = async () => {
     // console.log("brightness: ", brightness);
 
     const state = new LightState().rgb(randRGB).brightness(brightness);
-    devices.map(async (device) => {
-      await corsair.setDeviceState({
-        devices: [{ type: CorsairDirectTypes.DEVICE, id: device.id }],
-        state,
-      });
-    });
+	corsair.setDeviceState({
+	  devices: [{ type: CorsairDirectTypes.DEVICE, id: devices.id }],
+	  state,
+	});
+    // devices.forEach((device) => {
+    //   corsair.setDeviceState({
+    //     devices: [{ type: CorsairDirectTypes.DEVICE, id: device.id }],
+    //     state,
+    //   });
+    // });
     // 	brightness -= 20;
     // }, 5000);
   } catch (err) {
