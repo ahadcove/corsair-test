@@ -32,16 +32,12 @@ const start = async () => {
     // console.log("brightness: ", brightness);
 
     const state = new LightState().rgb(randRGB).brightness(brightness);
-	corsair.setDeviceState({
-	  devices: [{ type: CorsairDirectTypes.DEVICE, id: devices.id }],
-	  state,
-	});
-    // devices.forEach((device) => {
-    //   corsair.setDeviceState({
-    //     devices: [{ type: CorsairDirectTypes.DEVICE, id: device.id }],
-    //     state,
-    //   });
-    // });
+    devices.forEach((device) => {
+      corsair.setDeviceState({
+        devices: [{ type: CorsairDirectTypes.DEVICE, id: device.id }],
+        state,
+      });
+    });
     // 	brightness -= 20;
     // }, 5000);
   } catch (err) {
