@@ -1,14 +1,14 @@
-const { CorsairApi, LightState } = require("@lumiastream/corsair-cove");
+const { CorsairApi, LightState, CorsairDirectTypes } = require("@lumiastream/corsair-cove");
 const fs = require("fs");
 const log_file = fs.createWriteStream(__dirname + "/debug.log", { flags: "w" });
 const log_stdout = process.stdout;
 
 // Log to a file
-console.log = function (d) {
+console.log = function (...d) {
   log_file.write(JSON.stringify(d) + "\n");
   log_stdout.write(JSON.stringify(d) + "\n");
 };
-console.error = function (d) {
+console.error = function (...d) {
   log_file.write(JSON.stringify(d) + "\n");
   log_stdout.write(JSON.stringify(d) + "\n");
 };
@@ -24,7 +24,7 @@ const start = async () => {
     console.log("Devices received");
 
     // setInterval(() => {
-		const randRGB = { r: 255, g: 0, b: 0};
+	const randRGB = { r: 255, g: 0, b: 0};
     const brightness = 100;
     // const randRGB = createRandomRgb(0, 255);
     // console.log("randRGB: ", randRGB);
