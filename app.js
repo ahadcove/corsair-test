@@ -1,8 +1,7 @@
-const { CorsairApi } = require("@lumiastream/corsair-cove");
+const { CorsairApi, LightState } = require("@lumiastream/corsair-cove");
 const fs = require("fs");
 const log_file = fs.createWriteStream(__dirname + "/debug.log", { flags: "w" });
 const log_stdout = process.stdout;
-// import { createRandomRgb } from '../src/utils';
 
 // Log to a file
 console.log = function (d) {
@@ -25,10 +24,12 @@ const start = async () => {
     console.log("Devices received");
 
     // setInterval(() => {
-    const randRGB = createRandomRgb(0, 255);
-    console.log("randRGB: ", randRGB);
-    let brightness = createRandomRgb(0, 100)[0];
-    console.log("brightness: ", brightness);
+		const randRGB = { r: 255, g: 0, b: 0};
+    const brightness = 100;
+    // const randRGB = createRandomRgb(0, 255);
+    // console.log("randRGB: ", randRGB);
+    // let brightness = createRandomRgb(0, 100)[0];
+    // console.log("brightness: ", brightness);
 
     const state = new LightState().rgb(randRGB).brightness(brightness);
     devices.map(async (device) => {
